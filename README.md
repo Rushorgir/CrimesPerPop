@@ -53,7 +53,7 @@ cd CrimesPerPop
 pip install -r requirements.txt
 
 # Run the script
-python best_code.py
+python main.py
 ```
 
 ---
