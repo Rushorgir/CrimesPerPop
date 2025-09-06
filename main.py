@@ -9,8 +9,8 @@ import xgboost as xgb
 import warnings
 warnings.filterwarnings('ignore')
 
-def quick_feature_engineering(df):
-    # creating the most important features quickly
+def feature_engineering(df):
+    # creating the most important features
     print("🔧 Creating key features...")
 
     # Most important interaction features
@@ -25,8 +25,8 @@ def quick_feature_engineering(df):
 
     return df
 
-def quick_model_training(X_train, y_train, X_val, y_val):
-    # Training the 3 best models quickly
+def model_training(X_train, y_train, X_val, y_val):
+    # Training the 3 best models
     print("Training models...")
 
     models = {}
@@ -104,8 +104,8 @@ def main():
         return
 
     # Feature engineering
-    train_processed = quick_feature_engineering(train_df.copy())
-    test_processed = quick_feature_engineering(test_df.copy())
+    train_processed = feature_engineering(train_df.copy())
+    test_processed = feature_engineering(test_df.copy())
 
     # Prepare features
     feature_cols = [
@@ -126,7 +126,7 @@ def main():
     )
 
     # Train models
-    best_model, all_models = quick_model_training(X_train, y_train, X_val, y_val)
+    best_model, all_models = model_training(X_train, y_train, X_val, y_val)
 
     # Report best model on validation
     best_name, best_model_obj, best_scaler = best_model
@@ -151,8 +151,8 @@ def main():
         'ViolentCrimesPerPop': ensemble_pred
     })
 
-    submission.to_csv('quick_submission.csv', index=False)
-    print(f"Submission saved as: quick_submission.csv")
+    submission.to_csv('submission.csv', index=False)
+    print(f"Submission saved as: submission.csv")
 
 if __name__ == "__main__":
     main()
